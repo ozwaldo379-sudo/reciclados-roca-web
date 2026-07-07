@@ -1,0 +1,239 @@
+@import "tailwindcss";
+
+/*
+  Paleta Reciclados Roca — derivada del logo:
+  verde ecológico + café orgánico + blanco limpio + gris/negro profesional.
+  Sin azules, morados, rojos ni neones.
+*/
+@theme {
+  --color-roca-green-950: #0c2e17;
+  --color-roca-green-900: #14532d;
+  --color-roca-green-700: #1e7a3f;
+  --color-roca-green-500: #3d9e5f;
+  --color-roca-green-100: #e3f0e6;
+  --color-roca-lime: #a4c93d;
+  --color-roca-lime-dark: #7fa62b;
+  --color-roca-brown-900: #3e2a1e;
+  --color-roca-brown-700: #5d4037;
+  --color-roca-brown-500: #8d6e63;
+  --color-roca-brown-100: #efe9e3;
+  --color-roca-graphite: #1f2421;
+  --color-roca-gray: #4b5563;
+  --color-roca-white: #fafaf7;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --animate-morph-blob: morph-blob 14s ease-in-out infinite;
+  --animate-morph-gradient: morph-gradient 12s ease infinite;
+  --animate-spin-slow: spin 28s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-roca-white);
+  color: var(--color-roca-graphite);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-roca-lime);
+  color: var(--color-roca-green-950);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-roca-lime);
+  outline-offset: 2px;
+}
+
+/* ---------- Keyframes ---------- */
+
+@keyframes morph-blob {
+  0%, 100% {
+    border-radius: 58% 42% 55% 45% / 52% 48% 52% 48%;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    border-radius: 45% 55% 40% 60% / 60% 42% 58% 40%;
+    transform: translate3d(2%, -3%, 0) rotate(4deg) scale(1.05);
+  }
+  66% {
+    border-radius: 60% 40% 62% 38% / 42% 58% 44% 56%;
+    transform: translate3d(-2%, 2%, 0) rotate(-3deg) scale(0.97);
+  }
+}
+
+@keyframes morph-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes cta-sheen {
+  0% { transform: translateX(-130%) skewX(-18deg); }
+  100% { transform: translateX(230%) skewX(-18deg); }
+}
+
+@keyframes dash-flow {
+  to { stroke-dashoffset: -120; }
+}
+
+/* ---------- Morph classes (reutilizables) ---------- */
+
+/* Fondo con degradado animado en tonos del logo */
+.morph-gradient {
+  background: linear-gradient(
+    120deg,
+    var(--color-roca-green-950),
+    var(--color-roca-green-900),
+    var(--color-roca-brown-900),
+    var(--color-roca-green-900)
+  );
+  background-size: 300% 300%;
+  animation: var(--animate-morph-gradient);
+}
+
+/* Blob orgánico animado (usar como fondo decorativo, aria-hidden) */
+.morph-blob {
+  animation: var(--animate-morph-blob);
+  filter: blur(48px);
+  opacity: 0.5;
+  will-change: border-radius, transform;
+}
+
+/* Tarjeta premium con elevación y borde vivo al hover */
+.morph-card {
+  background: #ffffff;
+  border: 1px solid var(--color-roca-green-100);
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 2px rgb(31 36 33 / 0.05);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+.morph-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-roca-lime);
+  box-shadow:
+    0 18px 40px -18px rgb(20 83 45 / 0.35),
+    0 4px 10px -4px rgb(62 42 30 / 0.15);
+}
+
+/* Panel glassmorphism moderado sobre fondos oscuros */
+.morph-panel {
+  background: rgb(250 250 247 / 0.08);
+  border: 1px solid rgb(250 250 247 / 0.18);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Anillo cónico giratorio (circularidad) */
+.morph-ring {
+  background: conic-gradient(
+    from 0deg,
+    var(--color-roca-green-700),
+    var(--color-roca-lime),
+    var(--color-roca-brown-500),
+    var(--color-roca-green-700)
+  );
+  border-radius: 9999px;
+  animation: var(--animate-spin-slow);
+  will-change: transform;
+}
+
+/* CTA con brillo diagonal al hover */
+.morph-cta {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.morph-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(250 250 247 / 0.35),
+    transparent
+  );
+  transform: translateX(-130%) skewX(-18deg);
+}
+.morph-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -10px rgb(20 83 45 / 0.55);
+}
+.morph-cta:hover::after {
+  animation: cta-sheen 0.9s ease;
+}
+
+/* Línea SVG con flujo animado */
+.morph-flow {
+  stroke-dasharray: 10 8;
+  animation: dash-flow 3.5s linear infinite;
+}
+
+/* Flotación suave para elementos decorativos */
+.morph-float {
+  animation: var(--animate-float);
+}
+
+/* Textura sutil de fibra reciclada para fondos claros */
+.texture-fiber {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgb(93 64 55 / 0.03) 0px,
+      rgb(93 64 55 / 0.03) 1px,
+      transparent 1px,
+      transparent 9px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgb(20 83 45 / 0.025) 0px,
+      rgb(20 83 45 / 0.025) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+}
+
+/* ---------- Reduced motion: apagar animaciones decorativas ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .morph-blob,
+  .morph-gradient,
+  .morph-ring,
+  .morph-float,
+  .morph-flow,
+  .morph-cta::after {
+    animation: none !important;
+  }
+  .morph-card,
+  .morph-card:hover,
+  .morph-cta,
+  .morph-cta:hover {
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
