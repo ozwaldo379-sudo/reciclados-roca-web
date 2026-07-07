@@ -1,12 +1,17 @@
 import Icon from './Icon'
+import ParticleField from './ParticleField'
 import Reveal from './Reveal'
 import SectionHeading from './SectionHeading'
 import { benefits } from '../data/siteContent'
 
 export default function Benefits() {
   return (
-    <section id="beneficios" className="texture-fiber scroll-mt-16 bg-roca-green-100/40 py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section
+      id="beneficios"
+      className="texture-fiber relative scroll-mt-16 overflow-hidden bg-roca-green-100/40 py-20 lg:py-28"
+    >
+      <ParticleField variant="light" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Beneficios"
           title="Lo que tu planta gana al trabajar con nosotros"

@@ -1,12 +1,17 @@
 import Icon from './Icon'
+import ParticleField from './ParticleField'
 import Reveal from './Reveal'
 import SectionHeading from './SectionHeading'
 import { services } from '../data/siteContent'
 
 export default function Services() {
   return (
-    <section id="servicios" className="texture-fiber scroll-mt-16 bg-roca-white py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section
+      id="servicios"
+      className="texture-fiber relative scroll-mt-16 overflow-hidden bg-roca-white py-20 lg:py-28"
+    >
+      <ParticleField variant="light" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Servicios"
           title="Soluciones de reciclaje para tu operación industrial"

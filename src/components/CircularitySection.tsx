@@ -1,4 +1,5 @@
 import Icon from './Icon'
+import ParticleField from './ParticleField'
 import Reveal from './Reveal'
 import SectionHeading from './SectionHeading'
 import { circularitySteps } from '../data/siteContent'
@@ -24,6 +25,7 @@ export default function CircularitySection() {
       id="circularidad"
       className="morph-gradient relative scroll-mt-16 overflow-hidden py-20 lg:py-28"
     >
+      <ParticleField variant="dark" />
       <div
         aria-hidden="true"
         className="morph-blob absolute -right-40 top-10 h-[30rem] w-[30rem] bg-roca-brown-500/40"

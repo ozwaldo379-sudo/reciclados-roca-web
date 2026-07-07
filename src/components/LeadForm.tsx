@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { FormEvent, ReactNode } from 'react'
 import Icon from './Icon'
+import ParticleField from './ParticleField'
 import Reveal from './Reveal'
 import SectionHeading from './SectionHeading'
 import { contact, wasteTypes } from '../data/siteContent'
@@ -92,6 +93,7 @@ export default function LeadForm() {
 
   return (
     <section id="contacto" className="morph-gradient relative scroll-mt-16 overflow-hidden py-20 lg:py-28">
+      <ParticleField variant="dark" />
       <div
         aria-hidden="true"
         className="morph-blob absolute -left-40 bottom-0 h-[26rem] w-[26rem] bg-roca-lime/30"
