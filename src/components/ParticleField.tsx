@@ -33,7 +33,7 @@ interface ParticleFieldProps {
  */
 export default function ParticleField({
   variant = 'dark',
-  density = 55,
+  density = 75,
   className = '',
 }: ParticleFieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -59,16 +59,16 @@ export default function ParticleField({
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        r: 0.8 + Math.random() * 1.7,
-        vx: (Math.random() - 0.5) * 0.14,
-        vy: (Math.random() - 0.5) * 0.11,
+        r: 1.0 + Math.random() * 2.0,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.2,
         color: colors[Math.floor(Math.random() * colors.length)],
         alpha:
           variant === 'dark'
-            ? 0.18 + Math.random() * 0.3
-            : 0.1 + Math.random() * 0.16,
+            ? 0.25 + Math.random() * 0.4
+            : 0.15 + Math.random() * 0.3,
         phase: Math.random() * Math.PI * 2,
-        speed: 0.4 + Math.random() * 0.8,
+        speed: 0.6 + Math.random() * 1.0,
       }))
     }
 

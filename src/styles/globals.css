@@ -134,12 +134,12 @@ body {
     border-color 0.35s ease;
 }
 .morph-card:hover {
-  transform: translateY(-6px) scale(1.015);
-  border-color: var(--color-roca-lime);
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--color-roca-lime-dark);
   box-shadow:
-    0 18px 40px -18px rgb(20 83 45 / 0.4),
-    0 4px 10px -4px rgb(62 42 30 / 0.15),
-    0 0 26px -6px rgb(164 201 61 / 0.45);
+    0 20px 40px -15px rgb(20 83 45 / 0.4),
+    0 0 30px -5px rgb(164 201 61 / 0.5);
+  z-index: 10;
 }
 
 /* Panel glassmorphism moderado sobre fondos oscuros */
@@ -162,53 +162,50 @@ body {
   contorno de todas las tarjetas y paneles. La máscara limita el
   degradado cónico al anillo del borde.
 */
-.morph-card::before,
-.morph-panel::before {
+.morph-card::before {
   content: "";
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  padding: 2px;
+  padding: 1px;
   background: conic-gradient(
     from var(--border-angle),
     transparent 0deg,
-    transparent 300deg,
-    rgb(30 122 63 / 0.35) 322deg,
-    var(--color-roca-green-700) 337deg,
-    var(--color-roca-lime) 352deg,
-    #e4f2b3 359deg,
+    transparent 280deg,
+    rgba(30, 122, 63, 0.15) 310deg,
+    rgba(61, 158, 95, 0.3) 330deg,
+    var(--color-roca-lime) 355deg,
     transparent 360deg
   );
   -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: border-trace 6s linear infinite;
+  animation: border-trace 12s linear infinite;
   pointer-events: none;
   z-index: 1;
 }
 /* Desincronizar el recorrido entre tarjetas vecinas */
-:nth-child(2n) > .morph-card::before { animation-delay: -2.1s; }
-:nth-child(3n) > .morph-card::before { animation-delay: -4.3s; }
-:nth-child(4n) > .morph-card::before { animation-delay: -1.2s; }
-/* Al hover: la estela crece y brilla más (resaltado) */
-.morph-card:hover::before,
-.morph-panel:hover::before {
-  padding: 2.5px;
+:nth-child(2n) > .morph-card::before { animation-delay: -3s; }
+:nth-child(3n) > .morph-card::before { animation-delay: -6s; }
+:nth-child(4n) > .morph-card::before { animation-delay: -9s; }
+/* Al hover: brilla un poco más pero sin saturar */
+.morph-card:hover::before {
+  padding: 1.5px;
   background: conic-gradient(
     from var(--border-angle),
     transparent 0deg,
-    transparent 235deg,
-    rgb(30 122 63 / 0.5) 275deg,
-    var(--color-roca-green-700) 315deg,
-    var(--color-roca-lime) 348deg,
-    #eef7c8 359deg,
+    transparent 250deg,
+    rgba(30, 122, 63, 0.3) 290deg,
+    var(--color-roca-lime) 345deg,
     transparent 360deg
   );
+  animation: border-trace 6s linear infinite;
+  filter: drop-shadow(0 0 3px var(--color-roca-lime));
 }
 
 /* Anillo cónico giratorio (circularidad) */
